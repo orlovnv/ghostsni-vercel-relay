@@ -1,0 +1,14 @@
+{
+  "name": "ghostsni-vercel-relay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tiny Vercel XHTTP relay for GhostSNI-style VLESS over Vercel Edge.",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

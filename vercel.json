@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/tun-oren-2026/:path*",
+      "destination": "/api/proxy"
+    }
+  ]
+}
