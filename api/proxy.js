@@ -1,3 +1,4 @@
+
 export const config = {
   api: {
     bodyParser: false,
@@ -50,7 +51,6 @@ function copyResponseHeaders(upstream, res) {
 
 export default async function handler(req, res) {
   const backendUrl = process.env.XRAY_BACKEND_URL;
-  const relayPath = process.env.RELAY_PATH || "/tun-oren-2026";
 
   if (!backendUrl) {
     res.statusCode = 500;
@@ -59,7 +59,20 @@ export default async function handler(req, res) {
   }
 
   const incomingUrl = new URL(req.url, "http://vercel.local");
-  const target = new URL(relayPath + incomingUrl.search, backendUrl);
+  const xhttpPath = incomingUrl.searchParams.get("xhttp_path");
+
+  if (!xhttpPath || !xhttpPath.startsWith("/tun-oren-2026")) {
+    res.statusCode = 404;
+    res.end("XHTTP path is not mapped");
+    return;
+  }
+
+  incomingUrl.searchParams.delete("xhttp_path");
+
+  const targetPath =
+    xhttpPath +
+    (incomingUrl.searchParams.size > 0 ? `?${incomingUrl.searchParams.toString()}` : "");
+  const target = new URL(targetPath, backendUrl);
 
   const method = req.method || "GET";
   const hasBody = method !== "GET" && method !== "HEAD";
