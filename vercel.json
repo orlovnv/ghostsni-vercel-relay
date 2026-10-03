@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/tun-oren-2026/:path*",
-      "destination": "http://185.21.8.62/tun-oren-2026"
+      "destination": "http://185.21.8.62/tun-oren-2026/:path*"
     },
     {
       "source": "/tun-oren-2026",
