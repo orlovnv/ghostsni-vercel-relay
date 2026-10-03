@@ -1,9 +1,9 @@
 {
-  "version": 2,
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/tun-oren-2026/:path*",
-      "destination": "/api/proxy"
+      "source": "/tun-oren-2026",
+      "destination": "http://185.21.8.62:8080/tun-oren-2026"
     }
   ]
 }
